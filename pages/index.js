@@ -2,12 +2,13 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { useTranslation, withTranslation, Trans } from "react-i18next";
+import { useTranslations } from "next-intl";
 
-export default function Home() {
-	const { t, i18n } = useTranslation();
-
+const Home = () => {
+	// const { t, i18n } = useTranslation();
+	const t = useTranslations("Home");
 	const changeLanguage = (lng) => {
-		console.log("lng", lng);
+		console.log("lng >>", t, lng);
 		// i18n.changeLanguage(lng);
 	};
 	return (
@@ -23,10 +24,7 @@ export default function Home() {
 					Welcome to <a href="https://nextjs.org">Next.js!</a>
 				</h1>
 
-				<p className={styles.description}>
-					Get started by editing{" "}
-					<code className={styles.code}>pages/index.js</code>
-				</p>
+				<h1>{t("hello")}</h1>
 				<div>
 					<button type="button" onClick={() => changeLanguage("th")}>
 						th
@@ -81,4 +79,15 @@ export default function Home() {
 			</footer>
 		</div>
 	);
+};
+
+export function getStaticProps({ locale }) {
+	console.log("in locale", locale);
+	return {
+		props: {
+			messages: require(`../locales/${locale}.json`),
+		},
+	};
 }
+
+export default Home;
