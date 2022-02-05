@@ -1,0 +1,1 @@
+export { listAdminMenu } from "./dataAdminMenu";

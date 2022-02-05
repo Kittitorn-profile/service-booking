@@ -1,16 +1,10 @@
-// import "../styles/globals.css";
-
-// function MyApp({ Component, pageProps }) {
-// 	return <Component {...pageProps} />;
-// }
-
-// export default MyApp;
-
 import { NextIntlProvider } from "next-intl";
+import { Header } from "../components/layout";
 
 const MyApp = ({ Component, pageProps }) => {
 	return (
 		<NextIntlProvider messages={pageProps.messages}>
+			<Header />
 			<Component {...pageProps} />
 		</NextIntlProvider>
 	);
